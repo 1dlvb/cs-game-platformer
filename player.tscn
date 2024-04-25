@@ -47,9 +47,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_1a6bf")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
-"speed": 5.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -86,9 +86,10 @@ collision_layer = 2
 position = Vector2(-1.90735e-06, -33)
 scale = Vector2(1.73334, 1.75675)
 sprite_frames = SubResource("SpriteFrames_geoei")
-animation = &"idle"
+animation = &"jump"
 autoplay = "idle"
-frame_progress = 0.105944
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -27)
