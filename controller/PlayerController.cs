@@ -3,7 +3,7 @@ using Godot;
 
 namespace CS_game_project;
 
-public partial class PlayerMovementController: CharacterBody2D
+public partial class PlayerController: CharacterBody2D
 {
     private PlayerModel _player;
     private float _gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -11,7 +11,7 @@ public partial class PlayerMovementController: CharacterBody2D
     private float _jumpForce = 350.0f;
     private AnimatedSprite2D _myAnimatedSprite2D;
     private bool _isInAir;
-    public PlayerMovementController(PlayerModel player)
+    public PlayerController(PlayerModel player)
     {
         _player = player;
 
@@ -19,7 +19,6 @@ public partial class PlayerMovementController: CharacterBody2D
 
     public float PlayerMovement(Vector2 direction, AnimatedSprite2D animatedSprite2D)
     {
-        // Player movement
         direction.X = Input.GetActionStrength("Right") - Input.GetActionStrength("Left");
         direction.X *= _movementSpeed;
 
@@ -51,11 +50,10 @@ public partial class PlayerMovementController: CharacterBody2D
         return direction.Y;
     }
 
-    public Vector2 Gravity(double delta, Vector2 direction)
+    public float Gravity(double delta, Vector2 direction)
     {
-        // Add the gravity.
         if (!_player.IsOnFloor()) direction.Y += _gravity * (float)delta;
-        return direction;
+        return direction.Y;
     }
     
 }

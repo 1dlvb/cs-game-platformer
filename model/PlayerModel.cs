@@ -7,16 +7,16 @@ public partial class PlayerModel : CharacterBody2D
 	private Vector2 _direction;
 	private AnimatedSprite2D _animatedSprite2D;
 
-	private PlayerMovementController _playerController;
+	private PlayerController _playerController;
 	public override void _Ready()
 	{
-		_playerController = new PlayerMovementController(this);
+		_playerController = new PlayerController(this);
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		_direction.Y = _playerController.Gravity(delta, _direction).Y;
+		_direction.Y = _playerController.Gravity(delta, _direction);
 		_direction.X = _playerController.PlayerMovement(_direction, _animatedSprite2D);
 		_direction.Y = _playerController.Jump(_direction, _animatedSprite2D);
 
@@ -26,6 +26,4 @@ public partial class PlayerModel : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
-
-	
 }
