@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5o1g3he5rwgy"]
+[gd_scene load_steps=8 format=3 uid="uid://b5o1g3he5rwgy"]
 
 [ext_resource type="Texture2D" uid="uid://dve8ry70lbktd" path="res://Asset Pack/1 Tiles/Tileset.png" id="1_31kdo"]
 [ext_resource type="Texture2D" uid="uid://cew558sb5yea4" path="res://Asset Pack/1 Tiles/Tile_15.png" id="2_ryajo"]
 [ext_resource type="PackedScene" uid="uid://yfu5fyl547cc" path="res://player.tscn" id="3_rwajv"]
+[ext_resource type="PackedScene" uid="uid://dxeiafojojrha" path="res://Snail.tscn" id="4_844ua"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0564k"]
 texture = ExtResource("1_31kdo")
@@ -766,3 +767,6 @@ metadata/_edit_group_ = true
 
 [node name="Player" parent="." instance=ExtResource("3_rwajv")]
 position = Vector2(56, 198)
+
+[node name="Snail" parent="." instance=ExtResource("4_844ua")]
+position = Vector2(266, 492)
