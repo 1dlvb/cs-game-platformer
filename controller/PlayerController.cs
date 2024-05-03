@@ -5,17 +5,11 @@ namespace CS_game_project;
 
 public partial class PlayerController: CharacterBody2D
 {
-    private PlayerModel _player;
     private float _gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
     private float _movementSpeed = 300f;
     private float _jumpForce = 350.0f;
-    private AnimatedSprite2D _myAnimatedSprite2D;
+    private AnimatedSprite2D _animatedSprite2D;
     private bool _isInAir;
-    public PlayerController(PlayerModel player)
-    {
-        _player = player;
-
-    }
 
     public float PlayerMovement(Vector2 direction, AnimatedSprite2D animatedSprite2D)
     {
@@ -37,9 +31,9 @@ public partial class PlayerController: CharacterBody2D
         return direction.X;
     }
 
-    public float Jump(Vector2 direction, AnimatedSprite2D animatedSprite2D)
+    public float Jump(Vector2 direction, AnimatedSprite2D animatedSprite2D, bool isOnFloor)
     {
-        if (!_player.IsOnFloor()) return direction.Y;
+        if (!isOnFloor) return direction.Y;
         if (Input.IsActionPressed("Up"))
         {
             direction.Y = -_jumpForce;
@@ -50,9 +44,9 @@ public partial class PlayerController: CharacterBody2D
         return direction.Y;
     }
 
-    public float Gravity(double delta, Vector2 direction)
+    public float Gravity(double delta, Vector2 direction, bool isOnFloor)
     {
-        if (!_player.IsOnFloor()) direction.Y += _gravity * (float)delta;
+        if (!isOnFloor) direction.Y += _gravity * (float)delta;
         return direction.Y;
     }
     
