@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace CS_game_project.model;
 
 public partial class SnailModel : Node
 {

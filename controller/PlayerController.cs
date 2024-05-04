@@ -1,7 +1,9 @@
 using System;
+using CS_game_project.model;
+using CS_game_project.view;
 using Godot;
 
-namespace CS_game_project;
+namespace CS_game_project.controller;
 
 public partial class PlayerController: CharacterBody2D
 {
@@ -10,6 +12,18 @@ public partial class PlayerController: CharacterBody2D
     private float _jumpForce = 350.0f;
     private AnimatedSprite2D _animatedSprite2D;
     private bool _isInAir;
+    private PlayerModel _player;
+    private PlayerView _view;
+    internal bool isAlive = true;
+
+    public PlayerController()
+    {
+        _view = new PlayerView();
+    }
+    public PlayerController(AnimatedSprite2D animatedSprite2D)
+    {
+        _animatedSprite2D = animatedSprite2D;
+    }
 
     public float PlayerMovement(Vector2 direction, AnimatedSprite2D animatedSprite2D)
     {
@@ -48,6 +62,12 @@ public partial class PlayerController: CharacterBody2D
     {
         if (!isOnFloor) direction.Y += _gravity * (float)delta;
         return direction.Y;
+    }
+
+    public static void Die()
+    {
+        PlayerModel.IsAlive = false;
+        Console.WriteLine("died");
     }
     
 }

@@ -770,3 +770,12 @@ position = Vector2(56, 198)
 
 [node name="Snail" parent="." instance=ExtResource("4_844ua")]
 position = Vector2(266, 492)
+
+[node name="Snail2" parent="." instance=ExtResource("4_844ua")]
+position = Vector2(509, 498)
+
+[node name="Snail3" parent="." instance=ExtResource("4_844ua")]
+position = Vector2(701, 498)
+
+[node name="Snail4" parent="." instance=ExtResource("4_844ua")]
+position = Vector2(814, 498)
