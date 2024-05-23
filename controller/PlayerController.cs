@@ -1,4 +1,3 @@
-using System;
 using CS_game_project.model;
 using CS_game_project.view;
 using Godot;
@@ -8,38 +7,35 @@ namespace CS_game_project.controller;
 public partial class PlayerController: CharacterBody2D
 {
     private float _gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
-    private float _movementSpeed = 300f;
-    private float _jumpForce = 350.0f;
-    private AnimatedSprite2D _animatedSprite2D;
-    private bool _isInAir;
     private PlayerModel _player;
     private PlayerView _view;
-    internal bool isAlive = true;
 
     public PlayerController()
     {
         _view = new PlayerView();
+        _player = new PlayerModel();
     }
     public PlayerController(AnimatedSprite2D animatedSprite2D)
     {
-        _animatedSprite2D = animatedSprite2D;
+        _player = new PlayerModel();
+        _player.AnimatedSprite2D = animatedSprite2D;
     }
 
     public float PlayerMovement(Vector2 direction, AnimatedSprite2D animatedSprite2D)
     {
         direction.X = Input.GetActionStrength("Right") - Input.GetActionStrength("Left");
-        direction.X *= _movementSpeed;
+        direction.X *= PlayerModel.MovementSpeed;
 
         if (Input.IsActionPressed("Right")) animatedSprite2D.FlipH = false;
         else if (Input.IsActionPressed("Left")) animatedSprite2D.FlipH = true;
 
         if (direction.X != 0)
         {
-            if (!_isInAir) animatedSprite2D.Play("run");
+            if (!_player.IsInAir) animatedSprite2D.Play("run");
         }
         else
         {
-            if (!_isInAir) animatedSprite2D.Play("idle");
+            if (!_player.IsInAir) animatedSprite2D.Play("idle");
         }
         
         return direction.X;
@@ -50,11 +46,11 @@ public partial class PlayerController: CharacterBody2D
         if (!isOnFloor) return direction.Y;
         if (Input.IsActionPressed("Up"))
         {
-            direction.Y = -_jumpForce;
+            direction.Y = -PlayerModel.JumpForce;
             animatedSprite2D.Play("jump");
-            _isInAir = true;
+            _player.IsInAir = true;
         }
-        else _isInAir = false;
+        else _player.IsInAir = false;
         return direction.Y;
     }
 
@@ -67,7 +63,5 @@ public partial class PlayerController: CharacterBody2D
     public static void Die()
     {
         PlayerModel.IsAlive = false;
-        Console.WriteLine("died");
     }
-    
 }

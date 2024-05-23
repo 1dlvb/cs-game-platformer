@@ -1,3 +1,4 @@
+using CS_game_project.model;
 using CS_game_project.view;
 using Godot;
 
@@ -7,7 +8,7 @@ public partial class SnailController : Node
 {
 	private float _gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
-	public float Gravity(double delta, Vector2 direction, bool isOnFloor)
+	private float Gravity(double delta, Vector2 direction, bool isOnFloor)
 	{
 		if (!isOnFloor) direction.Y += _gravity * (float)delta;
 		return direction.Y;
@@ -30,6 +31,7 @@ public partial class SnailController : Node
 			sprite.FlipH = false;
 			velocity.X = -SnailView.Speed; // Move left
 		}
+		
 		return velocity;
 	}
 	public static bool ProcessDying(Area2D hitboxArea, Area2D collisionArea)
@@ -38,16 +40,12 @@ public partial class SnailController : Node
 		foreach (var area in hitboxArea.GetOverlappingAreas())
 		{
 			if (area.Name != "PlayerArea2D") continue;
-			// PlayerView is the script attached to the player node
-			// Implement the necessary actions when the enemy collides with the player
 			snailIsDied = true;
 		}
 
 		foreach (var area in collisionArea.GetOverlappingAreas())
 		{
 			if (area.Name != "PlayerArea2D") continue;
-			// PlayerView is the script attached to the player node
-			// Implement the necessary actions when the enemy collides with the player
 			PlayerController.Die();
 		}
 		return snailIsDied;
