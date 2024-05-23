@@ -16,7 +16,6 @@ public partial class FinishController : Area2D
 			// Implement the necessary actions when the enemy collides with the player
 			string currentScene = GetTree().CurrentScene.Name;
 			GD.Print(currentScene);
-			GD.Print();
 			GetTree().ChangeSceneToFile($"res://Level{ Convert.ToInt32(currentScene[5..])+1}.tscn");
 		}	
 	}
