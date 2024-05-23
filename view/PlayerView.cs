@@ -6,13 +6,13 @@ using Godot;
 
 public partial class PlayerView : CharacterBody2D
 {
-    private model.PlayerModel _player;
+    private PlayerModel _player;
     private Vector2 _direction;
     private AnimatedSprite2D _animatedSprite2D;
     private controller.PlayerController _playerController;
     public override void _Ready()
     {
-        _player = new model.PlayerModel();
+        _player = new PlayerModel();
         _playerController = new controller.PlayerController();
         _animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         
