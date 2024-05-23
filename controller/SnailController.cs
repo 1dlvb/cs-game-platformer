@@ -1,3 +1,4 @@
+using CS_game_project.view;
 using Godot;
 
 namespace CS_game_project.controller;
@@ -10,5 +11,45 @@ public partial class SnailController : Node
 	{
 		if (!isOnFloor) direction.Y += _gravity * (float)delta;
 		return direction.Y;
+	}
+	public Vector2 CalculateVelocity(double d, Vector2 velocity, SnailView snail, AnimatedSprite2D sprite)
+	{
+		if (!snail.IsOnFloor()) velocity.Y = _gravity * (float)d;
+		if (snail.IsOnWall())
+		{
+			snail.MovingRight = !snail.MovingRight; // Change direction when hitting a wall
+		}
+
+		if (snail.MovingRight)
+		{
+			sprite.FlipH = true;
+			velocity.X = SnailView.Speed; // Move right
+		}
+		else
+		{
+			sprite.FlipH = false;
+			velocity.X = -SnailView.Speed; // Move left
+		}
+		return velocity;
+	}
+	public static bool ProcessDying(Area2D hitboxArea, Area2D collisionArea)
+	{
+		var snailIsDied = false;
+		foreach (var area in hitboxArea.GetOverlappingAreas())
+		{
+			if (area.Name != "PlayerArea2D") continue;
+			// PlayerView is the script attached to the player node
+			// Implement the necessary actions when the enemy collides with the player
+			snailIsDied = true;
+		}
+
+		foreach (var area in collisionArea.GetOverlappingAreas())
+		{
+			if (area.Name != "PlayerArea2D") continue;
+			// PlayerView is the script attached to the player node
+			// Implement the necessary actions when the enemy collides with the player
+			PlayerController.Die();
+		}
+		return snailIsDied;
 	}
 }
