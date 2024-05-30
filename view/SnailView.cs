@@ -8,7 +8,7 @@ public partial class SnailView : CharacterBody2D
 {
 	public const float Speed = 25.0f;
 	public bool MovingRight { get; set; } = true;
-	public int Health { get; set; } = 2;
+	[Export] public int Health { get; set; } = 1;
 
 	private PlayerController _playerController;
 	private SnailController _snailController;
@@ -20,7 +20,6 @@ public partial class SnailView : CharacterBody2D
 
 	public override void _Ready()
 	{
-
 		_snailModel = new SnailModel();
 		_snailModel.SnailAnimatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		_playerController = new PlayerController();
@@ -31,7 +30,7 @@ public partial class SnailView : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		var velocity = _snailController.CalculateVelocity(delta, Velocity, this, _snailModel.SnailAnimatedSprite);
-		SnailController.Kill(GetNode<Area2D>("CollisionArea"));
+		SnailController.Kill(GetNode<Area2D>("CollisionArea"), GetTree());
 
 		Velocity = velocity;
 		MoveAndSlide();

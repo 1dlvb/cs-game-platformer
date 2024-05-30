@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://bm2thd8nly77w"]
+
+[ext_resource type="Script" path="res://view/SnailView.cs" id="1_lkro3"]
+[ext_resource type="Texture2D" uid="uid://t03f516gkw15" path="res://Asset Pack/Manzana_Snail/GreenGuy/tile000.png" id="2_x8fli"]
+[ext_resource type="Texture2D" uid="uid://d1v7elsqqu5f0" path="res://Asset Pack/Manzana_Snail/GreenGuy/tile001.png" id="3_gtbxh"]
+[ext_resource type="Texture2D" uid="uid://b2oque3nr1dpu" path="res://Asset Pack/Manzana_Snail/GreenGuy/tile002.png" id="4_xetrv"]
+[ext_resource type="Texture2D" uid="uid://byjiju43yfwvi" path="res://Asset Pack/Manzana_Snail/GreenGuy/tile003.png" id="5_gh5wt"]
+[ext_resource type="Texture2D" uid="uid://c4aa2qre45yg2" path="res://Asset Pack/Manzana_Snail/GreenGuy/tile004.png" id="6_tng3m"]
+[ext_resource type="Texture2D" uid="uid://b8l7ue0cbpxfl" path="res://Asset Pack/Manzana_Snail/GreenGuy/tile005.png" id="7_u03db"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bxoni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x8fli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gtbxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xetrv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gh5wt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tng3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_u03db")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tng3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gh5wt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xetrv")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnc6f"]
+radius = 9.05539
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33j68"]
+size = Vector2(36, 20.5625)
+
+[node name="Snail" type="CharacterBody2D"]
+script = ExtResource("1_lkro3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -19)
+sprite_frames = SubResource("SpriteFrames_bxoni")
+animation = &"walk"
+
+[node name="HitboxArea" type="Area2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
+position = Vector2(4, -6)
+shape = SubResource("CircleShape2D_pnc6f")
+
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="CollisionBlock" type="CollisionShape2D" parent="CollisionArea"]
+position = Vector2(-1, 2.5625)
+shape = SubResource("RectangleShape2D_33j68")
+
+[node name="CollisionBlock" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2.28125)
+shape = SubResource("RectangleShape2D_33j68")
