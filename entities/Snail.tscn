@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxeiafojojrha"]
+
+[ext_resource type="Script" path="res://view/SnailView.cs" id="1_me1hn"]
+[ext_resource type="Texture2D" uid="uid://xjy4ge23xqkg" path="res://Asset Pack/Manzana_Snail/YellowGuy/tile000.png" id="3_8f60d"]
+[ext_resource type="Texture2D" uid="uid://dsrm46j78rdqu" path="res://Asset Pack/Manzana_Snail/YellowGuy/tile001.png" id="4_5grx1"]
+[ext_resource type="Texture2D" uid="uid://dion13ueijbpk" path="res://Asset Pack/Manzana_Snail/YellowGuy/tile002.png" id="5_x7ogk"]
+[ext_resource type="Texture2D" uid="uid://b6ijfkiyi8x6j" path="res://Asset Pack/Manzana_Snail/YellowGuy/tile003.png" id="6_tnd5v"]
+[ext_resource type="Texture2D" uid="uid://dg880yiaxln42" path="res://Asset Pack/Manzana_Snail/YellowGuy/tile004.png" id="7_kgpe1"]
+[ext_resource type="Texture2D" uid="uid://bhreid1r3a8yi" path="res://Asset Pack/Manzana_Snail/YellowGuy/tile005.png" id="8_gj8fq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bxoni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8f60d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5grx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x7ogk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tnd5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kgpe1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gj8fq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kgpe1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tnd5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x7ogk")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnc6f"]
+radius = 9.05539
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33j68"]
+size = Vector2(36, 20.5625)
+
+[node name="Snail" type="CharacterBody2D"]
+script = ExtResource("1_me1hn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -19)
+sprite_frames = SubResource("SpriteFrames_bxoni")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.370671
+
+[node name="HitboxArea" type="Area2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
+position = Vector2(4, -6)
+shape = SubResource("CircleShape2D_pnc6f")
+
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="CollisionBlock" type="CollisionShape2D" parent="CollisionArea"]
+position = Vector2(-1, 2.5625)
+shape = SubResource("RectangleShape2D_33j68")
+
+[node name="CollisionBlock" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2.28125)
+shape = SubResource("RectangleShape2D_33j68")
