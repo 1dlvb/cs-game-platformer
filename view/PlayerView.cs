@@ -22,8 +22,6 @@ public partial class PlayerView : CharacterBody2D
     
     public override void _PhysicsProcess(double delta)
     {
-        if (!PlayerModel.IsAlive) QueueFree(); // check if player is died
-        
         // Check for collisions
         _direction.Y = _playerController.Gravity(delta, _direction, IsOnFloor());
         _direction.X = _playerController.PlayerMovement(_direction, _animatedSprite2D);
