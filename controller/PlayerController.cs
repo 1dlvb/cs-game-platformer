@@ -66,8 +66,8 @@ public partial class PlayerController: CharacterBody2D
         if (snail!.Health <= 0) snail!.QueueFree();
     }
 
-    public static void Die()
-    {
-        PlayerModel.IsAlive = false;
+    public static void Die(SceneTree tree)
+    { 
+        tree.ReloadCurrentScene();
     }
 }
