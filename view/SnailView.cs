@@ -8,6 +8,8 @@ public partial class SnailView : CharacterBody2D
 {
 	public const float Speed = 25.0f;
 	public bool MovingRight { get; set; } = true;
+	public int Health { get; set; } = 2;
+
 	private PlayerController _playerController;
 	private SnailController _snailController;
 	private SnailModel _snailModel;
@@ -29,16 +31,9 @@ public partial class SnailView : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		var velocity = _snailController.CalculateVelocity(delta, Velocity, this, _snailModel.SnailAnimatedSprite);
-		var snailIsDied = SnailController.ProcessDying(GetNode<Area2D>("HitboxArea"),
-			GetNode<Area2D>("CollisionArea"));
-		if (snailIsDied) Die();
+		SnailController.Kill(GetNode<Area2D>("CollisionArea"));
 
 		Velocity = velocity;
 		MoveAndSlide();
-	}
-	
-	private void Die()
-	{
-		QueueFree(); // Destroy the enemy node
 	}
 }

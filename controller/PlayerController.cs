@@ -53,11 +53,17 @@ public partial class PlayerController: CharacterBody2D
         else _player.IsInAir = false;
         return direction.Y;
     }
-
+   
     public float Gravity(double delta, Vector2 direction, bool isOnFloor)
     {
         if (!isOnFloor) direction.Y += _gravity * (float)delta;
         return direction.Y;
+    }
+
+    public static void KillProcess(SnailView snail)
+    {
+        snail!.Health--;
+        if (snail!.Health <= 0) snail!.QueueFree();
     }
 
     public static void Die()
