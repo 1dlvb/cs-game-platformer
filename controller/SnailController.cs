@@ -6,6 +6,7 @@ namespace CS_game_project.controller;
 public partial class SnailController : Node
 {
 	private float _gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+	private PlayerController _playerController = new();
 
 	private float Gravity(double delta, Vector2 direction, bool isOnFloor)
 	{
@@ -33,12 +34,12 @@ public partial class SnailController : Node
 		
 		return velocity;
 	}
-	public static void Kill(Area2D collisionArea)
+	public static void Kill(Area2D collisionArea, SceneTree tree)
 	{
 		foreach (var area in collisionArea.GetOverlappingAreas())
 		{
 			if (area.Name != "PlayerArea2D") continue;
-			PlayerController.Die();
+			PlayerController.Die(tree);
 		}
 	}
 }
