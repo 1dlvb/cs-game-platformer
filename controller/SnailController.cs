@@ -1,4 +1,3 @@
-using CS_game_project.model;
 using CS_game_project.view;
 using Godot;
 
@@ -34,20 +33,12 @@ public partial class SnailController : Node
 		
 		return velocity;
 	}
-	public static bool ProcessDying(Area2D hitboxArea, Area2D collisionArea)
+	public static void Kill(Area2D collisionArea)
 	{
-		var snailIsDied = false;
-		foreach (var area in hitboxArea.GetOverlappingAreas())
-		{
-			if (area.Name != "PlayerArea2D") continue;
-			snailIsDied = true;
-		}
-
 		foreach (var area in collisionArea.GetOverlappingAreas())
 		{
 			if (area.Name != "PlayerArea2D") continue;
 			PlayerController.Die();
 		}
-		return snailIsDied;
 	}
 }
