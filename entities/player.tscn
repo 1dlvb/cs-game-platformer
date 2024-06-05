@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://yfu5fyl547cc"]
+[gd_scene load_steps=27 format=3 uid="uid://yfu5fyl547cc"]
 
 [ext_resource type="Script" path="res://view/PlayerView.cs" id="1_80krf"]
 [ext_resource type="Texture2D" uid="uid://bydehs4pm7o5j" path="res://Asset Pack/Individual Sprites/adventurer-die-00.png" id="2_ta78h"]
@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://bpkif64y42rq6" path="res://Asset Pack/Individual Sprites/adventurer-run-04.png" id="20_fdd54"]
 [ext_resource type="Texture2D" uid="uid://cgsrsygvjgvha" path="res://Asset Pack/Individual Sprites/adventurer-run-05.png" id="21_f62yr"]
 [ext_resource type="Texture2D" uid="uid://cjoetj4qi6sbt" path="res://Asset Pack/Individual Sprites/adventurer-run-00.png" id="22_4u8hb"]
+[ext_resource type="PackedScene" uid="uid://dftjxvcuadiyu" path="res://play.tscn" id="23_qofys"]
+[ext_resource type="Script" path="res://controller/MenuController.cs" id="24_o4mk3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_geoei"]
 animations = [{
@@ -142,3 +144,11 @@ rotation_smoothing_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea2D"]
 position = Vector2(0, -29)
 shape = SubResource("CapsuleShape2D_mh604")
+
+[node name="menu" parent="." instance=ExtResource("23_qofys")]
+visible = false
+offset_left = 790.0
+offset_top = 207.0
+offset_right = 790.0
+offset_bottom = 207.0
+script = ExtResource("24_o4mk3")
