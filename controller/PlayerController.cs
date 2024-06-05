@@ -2,14 +2,13 @@ using CS_game_project.model;
 using CS_game_project.view;
 using Godot;
 
-namespace CS_game_project.controller;
+namespace CS_game_project;
 
 public partial class PlayerController: CharacterBody2D
 {
     private float _gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
     private PlayerModel _player;
     private PlayerView _view;
-
     public PlayerController()
     {
         _view = new PlayerView();
@@ -25,7 +24,6 @@ public partial class PlayerController: CharacterBody2D
     {
         direction.X = Input.GetActionStrength("Right") - Input.GetActionStrength("Left");
         direction.X *= PlayerModel.MovementSpeed;
-
         if (Input.IsActionPressed("Right")) animatedSprite2D.FlipH = false;
         else if (Input.IsActionPressed("Left")) animatedSprite2D.FlipH = true;
 
