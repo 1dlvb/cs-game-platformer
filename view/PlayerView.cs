@@ -1,4 +1,3 @@
-using CS_game_project.controller;
 using CS_game_project.model;
 
 namespace CS_game_project.view;
@@ -38,6 +37,7 @@ public partial class PlayerView : CharacterBody2D
             break;
         }
 
+        // GD.Print(_playerController.Pause() ? "pause" : "unpause");
         var velocity = Velocity;
         velocity.X = _direction.X;
         velocity.Y = _direction.Y;
