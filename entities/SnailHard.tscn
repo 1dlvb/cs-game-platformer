@@ -51,6 +51,7 @@ size = Vector2(36, 20.5625)
 
 [node name="Snail" type="CharacterBody2D"]
 script = ExtResource("1_gkl4j")
+Health = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -19)
